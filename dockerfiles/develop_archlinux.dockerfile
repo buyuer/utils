@@ -17,8 +17,11 @@ RUN pacman -S --noconfirm vim zsh && \
     pacman -S --noconfirm python python-pip && \
     pacman -S --noconfirm rust go jdk17-openjdk
 
-RUN useradd --create-home --shell /bin/zsh ${user} && \
-    echo "${user}:${user}" | chpasswd
+RUN echo "root:root" | chpasswd && \
+    useradd --create-home --shell /bin/zsh ${user} && \
+    echo "${user}:${user}" | chpasswd && \
+    pacman -S --noconfirm sudo && \
+    echo "${user}  ALL=(ALL:ALL) ALL" > /etc/sudoers.d/${user}
 
 USER ${user}
 WORKDIR /home/${user}

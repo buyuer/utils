@@ -12,8 +12,12 @@ RUN apt-get update && \
 
 RUN apt-get install -y zsh vim
 
-RUN useradd --create-home --shell /bin/zsh ${user} && \
-    echo "${user}:${user}" | chpasswd
+
+RUN apt-get install -y sudo && \
+    echo "root:root" | chpasswd && \
+    useradd --create-home --shell /bin/zsh ${user} && \
+    echo "${user}:${user}" | chpasswd && \
+    adduser ${user} sudo
 
 USER ${user}
 WORKDIR /home/${user}
