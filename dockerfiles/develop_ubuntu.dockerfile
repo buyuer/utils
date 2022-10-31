@@ -8,6 +8,7 @@ RUN apt-get update && \
     apt-get install -y apt-utils && \
     apt-get install -y dialog  && \
     apt-get install -y debconf && \
+    apt-get install -y net-tools && \
     apt-get install -y locales-all locales language-pack-zh-hans
 
 RUN apt-get install -y make gcc g++ gdb build-essential binutils clang llvm lld lldb clangd clang-format clang-tidy clang-tools && \
