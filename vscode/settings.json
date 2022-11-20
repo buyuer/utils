@@ -1,0 +1,5 @@
+{
+    "telemetry.telemetryLevel": "off",
+    "editor.renderControlCharacters": true,
+    "editor.renderWhitespace": "all",
+}
