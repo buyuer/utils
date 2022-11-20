@@ -3,6 +3,14 @@ FROM ubuntu:22.04
 ARG user=developer
 ARG ohmyzsh_url=https://mirrors.tuna.tsinghua.edu.cn/git/ohmyzsh.git
 
+# 把源设置为中科大
+#RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+
+# 把源设置为清华
+#RUN sudo sed -i "s@http://.*archive.ubuntu.com@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
+#RUN sudo sed -i "s@http://.*security.ubuntu.com@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
+
+# 安装基础软件
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get install -y apt-utils && \
@@ -13,6 +21,7 @@ RUN apt-get update && \
     apt-get install -y zip tar bzip gzip && \
     apt-get install -y zsh vim
 
+# 安装工具链
 RUN apt-get install -y make gcc g++ gdb build-essential binutils clang llvm lld lldb clangd clang-format clang-tidy clang-tools && \
     apt-get install -y libstdc++6 libc++1 libc++abi1 && \
     apt-get install -y openjdk-17-jdk golang python3 python2 python3-pip && \
